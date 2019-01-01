@@ -1,12 +1,9 @@
 'use strict';
 
-/**
- * Get an instance of Express's Router.
- */
 const router = require('express').Router();
 
-const LoginController = require('../controllers/login');
+const registerController = require('../controllers/register');
 
-router.use('/login', LoginController);
+router.use('/register', registerController);
 
 module.exports = router;
