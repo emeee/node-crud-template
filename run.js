@@ -4,9 +4,12 @@ var express = require('express');
 var routes = require('./src/routes');
 var cors = require('cors');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser')
 var port = 9000 ;
 
 var app = express();
+
+app.use(bodyParser.json())
 
 app.use(cors());
 

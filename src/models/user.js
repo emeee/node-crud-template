@@ -8,7 +8,7 @@ var userSchema = new Schema({
   username:   String,
   password: String,
   date: { type: Date, default: Date.now },
-  is_admin: Boolean,
+  is_admin: { type: Boolean, default: false }
 });
 
 var User = mongoose.model('User', userSchema)
