@@ -1,13 +1,18 @@
 'use strict';
 
-var express = require('express');
-var routes = require('./src/routes');
-var cors = require('cors');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var port = 9000 ;
+const express = require('express');
+const routes = require('./src/routes');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv')
 
-var app = express();
+// .env file
+dotenv.config()
+
+const port = 9000;
+
+const app = express();
 
 app.use(bodyParser.json())
 
@@ -31,7 +36,16 @@ app.use(function(err, req, res, next) { // eslint-disable-line no-unused-vars
 /**
  * Mongodb connection.
  */
-mongoose.connect('mongodb://admin:admin123@ds125684.mlab.com:25684/node-crud-template', {useNewUrlParser: true})
+
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_PASS = process.env.DB_PASS;
+
+const mongodb_url = 'mongodb://'+DB_USER+':'+DB_PASS+'@'+DB_HOST+':'+DB_PORT+'/'+DB_NAME;
+
+mongoose.connect(mongodb_url, {useNewUrlParser: true})
     .then(function() {
         console.log('Database connected!')
     })
