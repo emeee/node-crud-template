@@ -10,10 +10,10 @@ router.post('/', function (req, res, next){
   }
 
   User.findOne(params).then(function(user){
-    if(!user) res.status(401).send('Invalid credentials')
-    res.status(200)
+    if(!user) return res.status(401).send('Invalid credentials');
+    res.status(200).send({ status: 'OK', _id: user.id});
   }).catch(function(err) {
-    res.status(400).send('Something went wrong. Error:', err)
+    res.status(400).send('Something went wrong. Error:', err);
   })
 
 });
